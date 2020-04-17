@@ -1,2 +1,2 @@
-# react-instance
-Get the react component instance from DOM node
+# react-dom-instance
+Get the react component instance from a DOM node
