@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import SimpleComponent from './SimpleComponent';
-import { getInstance } from '../react-instance';
+import { getInstance } from '../react-dom-instance';
 
 describe('getInstance()', () => {
 	it("should get the instance from testing library's container", () => {
