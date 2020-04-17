@@ -1,0 +1,35 @@
+{
+  "name": "react-instance",
+  "version": "1.0.0",
+  "description": "Get react component instances from a DOM node",
+  "main": "react-instance.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arqex/react-instance.git"
+  },
+  "keywords": [
+    "react",
+    "testing",
+    "instance",
+    "dom"
+  ],
+  "author": "Javier Marquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arqex/react-instance/issues"
+  },
+  "homepage": "https://github.com/arqex/react-instance#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@testing-library/react": "^10.0.2",
+    "babel-jest": "^25.3.0",
+    "jest": "^25.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
