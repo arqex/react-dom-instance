@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default class ParentComponent extends React.Component {
+export default class NestedComponent extends React.Component {
 	render() {
 		return (
 			<IntermediateComponent />
@@ -21,7 +21,7 @@ class IntermediateComponent extends React.Component {
 class LeafComponent extends React.Component {
 	render() {
 		return (
-			<div test-dataid="div" />
+			<div data-testid="div" />
 		);
 	}
 	isLeaf(){}
