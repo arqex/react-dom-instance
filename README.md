@@ -32,8 +32,6 @@ const node = document.getElementById('testNode');
 findInstance( node ).sayHello(); // 'Hello!' in the console
 ```
 
-We will only find instances from react's class components, functional components has no instances and 
-
 ## Installation
 
 ```
@@ -52,7 +50,7 @@ We can pass some options in order to retrieve the wanted instance from the DOM n
 
 ### Options
 
-**componentName**
+* **componentName**
 
 Sometimes there are more than one component instance linked to a DOM node. For example, when a component `render` method returns another component, or when using higher order components.
 
@@ -77,7 +75,7 @@ findInstance( domNode, {componentName: 'ParentComponent'} );
 findInstance( domNode ); // ChildComponent instance
 ```
 
-**maxIteration**
+* **maxIteration**
 
 When there are more than one component linked to the same DOM node, `findInstance` navigates recursively through the react fibers looking for the instance of the right component we want. To make this process fast and avoid infinite loops there is a maximum number of iterations that the algorithm does until it decides that the instance can't be found. By default `findInstance` iterates `4` times looking for the instance and return `false` after not finding it.
 
