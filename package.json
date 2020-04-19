@@ -5,7 +5,8 @@
   "main": "react-dom-instance.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "coverage": "codecov"
   },
   "repository": {
     "type": "git",
