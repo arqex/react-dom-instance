@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import FunctionalComponent from './FunctionalComponent';
-import { getInstance } from '../react-dom-instance';
+import { findInstance } from '../react-dom-instance';
 
 
 describe('<Functional />', () => {
@@ -10,7 +10,7 @@ describe('<Functional />', () => {
       <FunctionalComponent />
     );
 
-    let instance = getInstance(container);
+    let instance = findInstance(container);
     expect( instance ).toBe( false );
   });
   
@@ -19,7 +19,7 @@ describe('<Functional />', () => {
       <FunctionalComponent />
     );
 
-    let instance = getInstance( queryByTestId('wrapper') );
+    let instance = findInstance( queryByTestId('wrapper') );
     expect( instance ).toBe( false );
   });
   
@@ -28,14 +28,14 @@ describe('<Functional />', () => {
       <FunctionalComponent />
     );
 
-    let instance = getInstance( queryByTestId('content') );
+    let instance = findInstance( queryByTestId('content') );
     expect( instance ).toBe( false );
   });
 
   it('shoud Not find any instance in a DOM node not handled by react', () => {
     let div = document.createElement('div');
     console.log( div );
-    let instance = getInstance( div );
+    let instance = findInstance( div );
     expect( instance ).toBe( false );
   })
 });

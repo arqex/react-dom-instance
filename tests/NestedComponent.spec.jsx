@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import NestedComponent from './NestedComponent';
-import { getInstance } from '../react-dom-instance';
+import { findInstance } from '../react-dom-instance';
 
 describe('<NestedComponent />', () => {
 	describe('when not using componentName', () => {
@@ -10,7 +10,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(container);
+			let instance = findInstance(container);
 			expect( instance.isLeaf ).toBeTruthy();
 		});
 
@@ -19,7 +19,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance( queryByTestId('div') );
+			let instance = findInstance( queryByTestId('div') );
 			expect( instance.isLeaf ).toBeTruthy();
 		});
 	});
@@ -31,7 +31,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(container, {componentName:'NestedComponent'});
+			let instance = findInstance(container, {componentName:'NestedComponent'});
 			expect( instance.isParent ).toBeTruthy();
 		});
 	
@@ -40,7 +40,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(container, {componentName:'IntermediateComponent'});
+			let instance = findInstance(container, {componentName:'IntermediateComponent'});
 			expect( instance.isIntermediate ).toBeTruthy();
 		});
 	
@@ -49,7 +49,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(container, {componentName:'LeafComponent'});
+			let instance = findInstance(container, {componentName:'LeafComponent'});
 			expect( instance.isLeaf ).toBeTruthy();
 		});
 	});
@@ -61,7 +61,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(queryByTestId('div'), {componentName:'NestedComponent'});
+			let instance = findInstance(queryByTestId('div'), {componentName:'NestedComponent'});
 			expect( instance.isParent ).toBeTruthy();
 		});
 	
@@ -70,7 +70,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(queryByTestId('div'), {componentName:'IntermediateComponent'});
+			let instance = findInstance(queryByTestId('div'), {componentName:'IntermediateComponent'});
 			expect( instance.isIntermediate ).toBeTruthy();
 		});
 	
@@ -79,7 +79,7 @@ describe('<NestedComponent />', () => {
 				<NestedComponent />
 			);
 	
-			let instance = getInstance(queryByTestId('div'), {componentName:'LeafComponent'});
+			let instance = findInstance(queryByTestId('div'), {componentName:'LeafComponent'});
 			expect( instance.isLeaf ).toBeTruthy();
 		});
 	});
@@ -95,7 +95,7 @@ describe('<NestedComponent />', () => {
 					componentName: 'NestedComponent',
 					maxIteration: 2
 				};
-				let instance = getInstance(container, options);
+				let instance = findInstance(container, options);
 				expect( instance.isParent ).toBeTruthy();
 			});
 	
@@ -108,7 +108,7 @@ describe('<NestedComponent />', () => {
 					componentName: 'NestedComponent',
 					maxIteration: 1
 				};
-				let instance = getInstance(container, options);
+				let instance = findInstance(container, options);
 				expect( instance.isParent ).toBeFalsy();
 			});
 		});
@@ -123,7 +123,7 @@ describe('<NestedComponent />', () => {
 					componentName: 'NestedComponent',
 					maxIteration: 2
 				};
-				let instance = getInstance(queryByTestId('div'), options);
+				let instance = findInstance(queryByTestId('div'), options);
 				expect( instance.isParent ).toBeTruthy();
 			});
 
@@ -136,7 +136,7 @@ describe('<NestedComponent />', () => {
 					componentName: 'NestedComponent',
 					maxIteration: 1
 				};
-				let instance = getInstance(queryByTestId('div'), options);
+				let instance = findInstance(queryByTestId('div'), options);
 				expect( instance.isParent ).toBeFalsy();
 			});
 		})

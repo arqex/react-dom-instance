@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import SimpleComponent from './SimpleComponent';
-import { getInstance } from '../react-dom-instance';
+import { findInstance } from '../react-dom-instance';
 
 describe('<SimpleComponent />', () => {
 	it("should get the instance from testing library's container", () => {
@@ -9,7 +9,7 @@ describe('<SimpleComponent />', () => {
 			<SimpleComponent />
 		);
 
-		expect( getInstance( container ).aMethod ).toBeTruthy();
+		expect( findInstance( container ).aMethod ).toBeTruthy();
 	});
 
 	it("should get the instance from container's child", () => {
@@ -17,7 +17,7 @@ describe('<SimpleComponent />', () => {
 			<SimpleComponent />
 		);
 
-		expect(getInstance(container.children[0]).aMethod).toBeTruthy();
+		expect(findInstance(container.children[0]).aMethod).toBeTruthy();
 	});
 
 	it("should get the instance by componentName", () => {
@@ -25,7 +25,7 @@ describe('<SimpleComponent />', () => {
 			<SimpleComponent />
 		);
 
-		let instance = getInstance( container, {componentName: 'SimpleComponent'} );
+		let instance = findInstance( container, {componentName: 'SimpleComponent'} );
 		expect( instance.aMethod ).toBeTruthy();
 	});
 
@@ -34,7 +34,7 @@ describe('<SimpleComponent />', () => {
 			<SimpleComponent />
 		);
 
-		let instance = getInstance( container, {componentName: 'OtherComponent'} );
+		let instance = findInstance( container, {componentName: 'OtherComponent'} );
 		expect( instance ).toBe( false );
 	})
 });

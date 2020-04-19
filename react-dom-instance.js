@@ -2,7 +2,7 @@ const optionsDefault = {
 	maxIteration: 4
 };
 
-function getInstance(node, opts) {
+function findInstance(node, opts) {
 	const options = Object.assign({}, optionsDefault, opts);
 
 	const fiber = getFiberFromNode(node);
@@ -87,5 +87,5 @@ function warn( msg ){
 	typeof console !== undefined && console.warn('react-dom-instance: ' + msg );
 }
 
-module.exports.getInstance = getInstance;
-module.exports = {getInstance};
+module.exports.findInstance = findInstance;
+module.exports = {findInstance};

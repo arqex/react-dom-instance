@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import Hoc from './HigherOrderComponent';
-import { getInstance } from '../react-dom-instance';
+import { findInstance } from '../react-dom-instance';
 
 describe('<Hoc />', () => {
 	describe('when not using componentName', () => {
@@ -10,7 +10,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(container);
+			let instance = findInstance(container);
 			expect( instance.isWrapped ).toBeTruthy();
 		});
 
@@ -19,7 +19,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance( queryByTestId('div') );
+			let instance = findInstance( queryByTestId('div') );
 			expect( instance.isWrapped ).toBeTruthy();
 		});
 	});
@@ -31,7 +31,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(container, {componentName:'HocParent'});
+			let instance = findInstance(container, {componentName:'HocParent'});
 			expect( instance.isHocParent ).toBeTruthy();
 		});
 	
@@ -40,7 +40,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(container, {componentName:'HocChild'});
+			let instance = findInstance(container, {componentName:'HocChild'});
 			expect( instance.isHocChild ).toBeTruthy();
 		});
 	
@@ -49,7 +49,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(container, {componentName:'WrappedComponent'});
+			let instance = findInstance(container, {componentName:'WrappedComponent'});
 			expect( instance.isWrapped ).toBeTruthy();
 		});
 	});
@@ -61,7 +61,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(queryByTestId('div'), {componentName:'HocParent'});
+			let instance = findInstance(queryByTestId('div'), {componentName:'HocParent'});
 			expect( instance.isHocParent ).toBeTruthy();
 		});
 	
@@ -70,7 +70,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(queryByTestId('div'), {componentName:'HocChild'});
+			let instance = findInstance(queryByTestId('div'), {componentName:'HocChild'});
 			expect( instance.isHocChild ).toBeTruthy();
 		});
 	
@@ -79,7 +79,7 @@ describe('<Hoc />', () => {
 				<Hoc />
 			);
 	
-			let instance = getInstance(queryByTestId('div'), {componentName:'WrappedComponent'});
+			let instance = findInstance(queryByTestId('div'), {componentName:'WrappedComponent'});
 			expect( instance.isWrapped ).toBeTruthy();
 		});
 	});
@@ -95,7 +95,7 @@ describe('<Hoc />', () => {
 					componentName: 'HocParent',
 					maxIteration: 2
 				};
-				let instance = getInstance(container, options);
+				let instance = findInstance(container, options);
 				expect( instance.isHocParent ).toBeTruthy();
 			});
 	
@@ -108,7 +108,7 @@ describe('<Hoc />', () => {
 					componentName: 'HocParent',
 					maxIteration: 1
 				};
-				let instance = getInstance(container, options);
+				let instance = findInstance(container, options);
 				expect( instance.isHocParent ).toBeFalsy();
 			});
 		});
@@ -123,7 +123,7 @@ describe('<Hoc />', () => {
 					componentName: 'HocParent',
 					maxIteration: 2
 				};
-				let instance = getInstance(queryByTestId('div'), options);
+				let instance = findInstance(queryByTestId('div'), options);
 				expect( instance.isHocParent ).toBeTruthy();
 			});
 
@@ -136,7 +136,7 @@ describe('<Hoc />', () => {
 					componentName: 'HocParent',
 					maxIteration: 1
 				};
-				let instance = getInstance(queryByTestId('div'), options);
+				let instance = findInstance(queryByTestId('div'), options);
 				expect( instance.isHocParent ).toBeFalsy();
 			});
 		})
