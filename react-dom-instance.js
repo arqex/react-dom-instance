@@ -58,6 +58,7 @@ function getTargetInstance(childInstance, parentInstance, componentName, i) {
 	}
 
 	if (i <= 0) {
+		warn('maxIteration exceeded and not ' + componentName + ' instance found.')
 		return false;
 	}
 
@@ -78,6 +79,11 @@ function isTarget(instance, componentName) {
 	if (!componentName) return true;
 	
 	return instance.constructor.name === componentName;
+}
+
+
+function warn( msg ){
+	typeof console !== undefined && console.warn('react-dom-instance: ' + msg );
 }
 
 module.exports.getInstance = getInstance;

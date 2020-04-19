@@ -4,6 +4,27 @@ import NestedComponent from './NestedComponent';
 import { getInstance } from '../react-dom-instance';
 
 describe('<NestedComponent />', () => {
+	describe('when not using componentName', () => {
+		it('should get the instance of the Leaf component for the react testing container', () => {
+			let { container } = render(
+				<NestedComponent />
+			);
+	
+			let instance = getInstance(container);
+			expect( instance.isLeaf ).toBeTruthy();
+		});
+
+		it('should get the instance of the Leaf component for the div', () => {
+			let { queryByTestId } = render(
+				<NestedComponent />
+			);
+	
+			let instance = getInstance( queryByTestId('div') );
+			expect( instance.isLeaf ).toBeTruthy();
+		});
+	});
+
+
 	describe('when using react testing library container', () => {
 		it("should get the instance for the NestedComponent", () => {
 			let { container } = render(
@@ -34,7 +55,7 @@ describe('<NestedComponent />', () => {
 	});
 
 	
-	describe('when using a queried div', () => {
+	describe('when using a queried DOM element', () => {
 		it("should get the instance for the NestedComponent", () => {
 			let { queryByTestId } = render(
 				<NestedComponent />
@@ -63,5 +84,61 @@ describe('<NestedComponent />', () => {
 		});
 	});
 
+	describe('when using maxIteration', () => {
+		describe('and using testing library container', () => {
+			it('should get the parent component when maxIteration >= 2', () => {
+				let { container } = render(
+					<NestedComponent />
+				);
+	
+				let options = {
+					componentName: 'NestedComponent',
+					maxIteration: 2
+				};
+				let instance = getInstance(container, options);
+				expect( instance.isParent ).toBeTruthy();
+			});
+	
+			it('should NOT get the parent component when maxIteration < 2', () => {
+				let { container } = render(
+					<NestedComponent />
+				);
+	
+				let options = {
+					componentName: 'NestedComponent',
+					maxIteration: 1
+				};
+				let instance = getInstance(container, options);
+				expect( instance.isParent ).toBeFalsy();
+			});
+		});
 
+		describe('and using queried DOM node', () => {
+			it('should get the parent component when maxIteration >= 2', () => {
+				let { queryByTestId } = render(
+					<NestedComponent />
+				);
+
+				let options = {
+					componentName: 'NestedComponent',
+					maxIteration: 2
+				};
+				let instance = getInstance(queryByTestId('div'), options);
+				expect( instance.isParent ).toBeTruthy();
+			});
+
+			it('should NOT get the parent component when maxIteration < 2', () => {
+				let { queryByTestId } = render(
+					<NestedComponent />
+				);
+
+				let options = {
+					componentName: 'NestedComponent',
+					maxIteration: 1
+				};
+				let instance = getInstance(queryByTestId('div'), options);
+				expect( instance.isParent ).toBeFalsy();
+			});
+		})
+	});
 });
