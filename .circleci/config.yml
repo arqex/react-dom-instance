@@ -11,6 +11,8 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+            - run: npm coverage
+    
 workflows:
     build-and-test:
       jobs:
