@@ -1,8 +1,9 @@
 {
   "name": "react-dom-instance",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Get react component instances from a DOM node",
   "main": "react-dom-instance.js",
+  "files": ["react-dom-instance.js"],
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
