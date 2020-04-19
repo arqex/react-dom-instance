@@ -20,7 +20,7 @@ function getFiberFromNode(node) {
 
 	if (!key) {
 		node = node.children[0];
-		key = getFiberKey(node);
+		key = node && getFiberKey(node);
 	}
 
 	return key ? node[key] : false;
@@ -35,15 +35,18 @@ function getFiberKey(node) {
 function getInstanceFromFiber( fiber, i ){
 	let f = fiber;
 
+	
+	// return isInstanceFiber(f) ? f.stateNode : false;
+
 	while( !isInstanceFiber(f) && i-- > 0 ){
-		f = f.return
+		f = f && f.return;
 	};
 
 	return isInstanceFiber(f) ? f.stateNode : false;
 }
 
 function isInstanceFiber( fiber ){
-	return fiber && typeof fiber.type !== 'string' && fiber.stateNode;
+	return fiber && fiber.type && typeof fiber.type !== 'string' && fiber.stateNode;
 }
 
 function getTargetInstance(childInstance, parentInstance, componentName, i) {
@@ -74,8 +77,6 @@ function getTargetInstance(childInstance, parentInstance, componentName, i) {
 }
 
 function isTarget(instance, componentName) {
-	if (!instance ) return false;
-
 	if (!componentName) return true;
 	
 	return instance.constructor.name === componentName;

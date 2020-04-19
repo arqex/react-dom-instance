@@ -27,5 +27,14 @@ describe('<SimpleComponent />', () => {
 
 		let instance = getInstance( container, {componentName: 'SimpleComponent'} );
 		expect( instance.aMethod ).toBeTruthy();
+	});
+
+	it("should NOT get any instance for an unknown componentName", () => {
+		let { container } = render(
+			<SimpleComponent />
+		);
+
+		let instance = getInstance( container, {componentName: 'OtherComponent'} );
+		expect( instance ).toBe( false );
 	})
 });
