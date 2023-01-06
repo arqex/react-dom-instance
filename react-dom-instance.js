@@ -28,7 +28,8 @@ function getFiberFromNode(node) {
 
 function getFiberKey(node) {
 	return Object.keys(node).find(key => (
-		key.startsWith('__reactInternalInstance$')
+		key.startsWith('__reactInternalInstance$') ||
+		key.startsWith('__reactFiber$')
 	));
 }
 
